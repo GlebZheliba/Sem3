@@ -25,22 +25,10 @@ public class StringProcessor {
         return count;
     }
 
-    public static StringBuilder stringModification1(String a) {
-        StringBuilder b = new StringBuilder(a);
-        while ((b.indexOf("1") != -1) || (b.indexOf("2") != -1) || (b.indexOf("3") != -1)) {
-            if (b.indexOf("1") != -1) {
-                b.replace(b.indexOf("1"), b.indexOf("1") + 1, "один");
-            }
-
-            if (b.indexOf("2") != -1) {
-                b.replace(b.indexOf("2"), b.indexOf("2") + 1, "два");
-            }
-
-            if (b.indexOf("3") != -1) {
-                b.replace(b.indexOf("3"), b.indexOf("3") + 1, "три");
-            }
-        }
-        return b;
+    public static String stringModification1(String a) {
+        return a.replace("1", "один")
+                .replace("2", "два")
+                .replace("3", "три");
     }
 
     public static StringBuilder stringModification2(StringBuilder a) {
@@ -49,7 +37,6 @@ public class StringProcessor {
                 a.deleteCharAt(i);
             }
         }
-
         return a;
     }
 
@@ -64,14 +51,14 @@ public class StringProcessor {
             if (a.charAt(i) == ' ') {
                 isWord0 = false;
                 b.append(' ');
-            } else if (isWord0 == false) {
+            } else if (!isWord0) {
                 isWord0 = true;
                 for (int j = start; j >= 0; j--) {
-                    if (a.charAt(j) != ' ' && isWord == false) {
+                    if (a.charAt(j) != ' ' && !isWord) {
                         wEnd = j + 1;
                         isWord = true;
                     }
-                    if (a.charAt(j) == ' ' && isWord == true || j == 0) {
+                    if (a.charAt(j) == ' ' && isWord || j == 0) {
                         wStart = (a.charAt(j) == ' ') ? j + 1 : 0;
                         start = j - 1;
                         isWord = false;
